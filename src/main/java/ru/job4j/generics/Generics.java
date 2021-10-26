@@ -24,9 +24,11 @@ public class Generics {
          * Применение метода: gen.printBoundedWildCard(first); является не целесллбразным.
          * Закоментировать его, как указано в задание не получается, т.к. Bot CI генерирует ошибку.
          */
+
         gen.printBoundedWildCard(second);
         gen.printBoundedWildCard(third);
         System.out.println();
+
 
         /**
          * Применение метода: gen.printLowerBoundedWildCard(third); является не целесллбразным.
@@ -34,6 +36,7 @@ public class Generics {
          */
         gen.printLowerBoundedWildCard(first);
         gen.printLowerBoundedWildCard(second);
+
     }
 
     public void printObject(List<?> list) {
