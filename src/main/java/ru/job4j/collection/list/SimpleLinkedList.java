@@ -8,20 +8,17 @@ import java.util.Objects;
 
 public class SimpleLinkedList<E> implements List<E> {
 
-    private Node<E> last;
     private Node<E> first;
     private int modCount;
     private int size;
 
     @Override
     public void add(E value) {
-        Node<E> l = last;
-        Node<E> newNode = new Node<E>(l, value, null);
-        last = newNode;
-        if (l == null) {
+        Node<E> newNode = new Node<E>(value, null);
+        if (first == null) {
             first = newNode;
         } else {
-            l.next = newNode;
+            first.next = newNode;
         }
         size++;
         modCount++;
@@ -43,7 +40,6 @@ public class SimpleLinkedList<E> implements List<E> {
         return new Iterator<E>() {
             Node<E> newNode = first;
             Node<E> nextNode;
-            private int cursor = 0;
             private final int expectedModCount = modCount;
 
             @Override
@@ -51,7 +47,7 @@ public class SimpleLinkedList<E> implements List<E> {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return cursor < size;
+                return newNode != null;
             }
 
             @Override
@@ -62,7 +58,6 @@ public class SimpleLinkedList<E> implements List<E> {
 
                 nextNode = newNode;
                 newNode = nextNode.next;
-                cursor++;
                 return nextNode.item;
             }
 
@@ -73,12 +68,10 @@ public class SimpleLinkedList<E> implements List<E> {
 
         private E item;
         private Node<E> next;
-        private Node<E> prev;
 
-        Node(Node<E> prev, E element, Node<E> next) {
+        Node(E element, Node<E> next) {
             this.item = element;
             this.next = next;
-            this.prev = prev;
         }
     }
 }
