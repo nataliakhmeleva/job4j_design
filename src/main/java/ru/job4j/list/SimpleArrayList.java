@@ -14,8 +14,14 @@ public class SimpleArrayList<T> implements List<T> {
 
     private int modCount;
 
+    private static final int DEFAULT_CAPACITY = 10;
+
     public SimpleArrayList(int capacity) {
-        this.container = (T[]) new Object[capacity];
+        this.container = (T[]) new Object[capacity == 0 ? DEFAULT_CAPACITY : capacity];
+    }
+
+    public SimpleArrayList() {
+        this.container = (T[]) new Object[DEFAULT_CAPACITY];
     }
 
     @Override
