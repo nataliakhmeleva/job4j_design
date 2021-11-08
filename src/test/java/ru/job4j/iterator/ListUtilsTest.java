@@ -50,4 +50,12 @@ public class ListUtilsTest {
         ListUtils.removeAll(input, elements);
         assertThat(input, is(Arrays.asList(3, 4, 5)));
     }
+
+    @Test
+    public void whenAddAfterNotLast() {
+        List<Integer> input = new ArrayList<>(Arrays.asList(0, 1, 2));
+        ListUtils.addAfter(input, 1, 8);
+        assertThat(input, is(Arrays.asList(0, 1, 8, 2)));
+
+    }
 }
