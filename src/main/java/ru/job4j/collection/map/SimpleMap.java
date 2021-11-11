@@ -3,7 +3,6 @@ package ru.job4j.collection.map;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 public class SimpleMap<K, V> implements Map<K, V> {
 
@@ -23,14 +22,13 @@ public class SimpleMap<K, V> implements Map<K, V> {
             expand();
         }
         int index = indexFor(hash(key.hashCode()));
-        Objects.checkIndex(index, table.length);
-        if (table[index] == null) {
+        boolean rsl = table[index] == null;
+        if (rsl) {
             table[index] = new MapEntry<>(key, value);
             count++;
             modCount++;
-            return true;
         }
-        return false;
+        return rsl;
     }
 
     private int hash(int hashCode) {
@@ -56,24 +54,19 @@ public class SimpleMap<K, V> implements Map<K, V> {
     @Override
     public V get(K key) {
         int index = indexFor(hash(key.hashCode()));
-        Objects.checkIndex(index, table.length);
-        if (table[index] != null && table[index].key.equals(key)) {
-            return table[index].value;
-        }
-        return null;
+        return table[index] != null && table[index].key.equals(key) ? table[index].value : null;
     }
 
     @Override
     public boolean remove(K key) {
         int index = indexFor(hash(key.hashCode()));
-        Objects.checkIndex(index, table.length);
-        if (table[index] != null && table[index].key.equals(key)) {
+        boolean rsl = table[index] != null && table[index].key.equals(key);
+        if (rsl) {
             table[index] = null;
             count--;
             modCount++;
-            return true;
         }
-        return false;
+        return rsl;
     }
 
     @Override
