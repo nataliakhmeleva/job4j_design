@@ -14,16 +14,11 @@ public class LogFilter {
     public static List<String> filter(String file) {
         List<String> list = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
-            list = in.lines().filter(LogFilter::findEl).collect(Collectors.toList());
+            list = in.lines().filter(log -> log.contains(" 404 ")).collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
-    }
-
-    public static boolean findEl(String line) {
-        String[] str = line.split(" ");
-        return str.length > 1 && str[str.length - 2].equals("404");
     }
 
     public static void save(List<String> log, String file) {
