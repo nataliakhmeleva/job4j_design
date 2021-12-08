@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
+import java.util.stream.IntStream;
 
 public class Config {
 
@@ -18,15 +19,26 @@ public class Config {
 
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-            read.lines().filter(line -> !line.isEmpty() && !line.startsWith("#"))
-                .map(line -> line.split("=")).forEach(str -> {
-                values.put(str[0], str[1]);
-                if (str.length != 2 || str[0].isEmpty() || str[1].isEmpty()) {
-                    throw new IllegalArgumentException();
-                }
-            });
+            read.lines()
+                .filter(line -> !line.isEmpty() && !line.startsWith("#"))
+                .filter(this::checkFormat)
+                .map(line -> line.split("="))
+                .forEach(str -> values.put(str[0], str[1]));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public boolean countSymbol(String line) {
+        char[] chars = line.toCharArray();
+        return IntStream.range(0, chars.length).filter(i -> chars[i] == '=').count() == 1;
+    }
+
+    public boolean checkFormat(String line) {
+        if (!line.startsWith("=") && !line.endsWith("=") && countSymbol(line)) {
+            return true;
+        } else {
+            throw new IllegalArgumentException();
         }
     }
 

@@ -31,4 +31,12 @@ public class ConfigTest {
         config.load();
         assertThat((Matchers.nullValue()), is("Natalia Khmeleva"));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenUncorrect() {
+        String path = "./data/uncorrect.properties";
+        Config config = new Config(path);
+        config.load();
+        assertThat(config.value("name"), is("Natalia Khmeleva"));
+    }
 }
