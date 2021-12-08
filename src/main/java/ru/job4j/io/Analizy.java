@@ -13,14 +13,14 @@ public class Analizy {
         try (BufferedReader in = new BufferedReader(new FileReader(source));
             PrintWriter out = new PrintWriter(
                 new BufferedOutputStream(new FileOutputStream(target)))) {
-            String start = null;
+            boolean start = false;
             for (String line = in.readLine(); line != null; line = in.readLine()) {
-                if (start == null && (line.startsWith("400") || line.startsWith("500"))) {
+                if (!start && (line.startsWith("400") || line.startsWith("500"))) {
                     out.print(line.split(" ")[1] + "; ");
-                    start = line;
-                } else if (start != null && (line.startsWith("200") || line.startsWith("300"))) {
+                    start = true;
+                } else if (start && (line.startsWith("200") || line.startsWith("300"))) {
                     out.println(line.split(" ")[1] + ";");
-                    start = null;
+                    start = false;
                 }
             }
         } catch (IOException e) {
