@@ -35,18 +35,18 @@ public class Config {
     }
 
     public boolean checkFormat(String line) {
-        if (!line.startsWith("=") && !line.endsWith("=") && countSymbol(line)) {
-            return true;
-        } else {
+        if (line.startsWith("=") || line.endsWith("=") || !countSymbol(line)) {
             throw new IllegalArgumentException();
         }
+        return true;
+
     }
 
     public String value(String key) {
-        if (values.containsKey(key)) {
-            return values.get(key);
+        if (!values.containsKey(key)) {
+            throw new UnsupportedOperationException("Don't impl this method yet!");
         }
-        throw new UnsupportedOperationException("Don't impl this method yet!");
+        return values.get(key);
     }
 
     @Override
