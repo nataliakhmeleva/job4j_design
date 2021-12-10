@@ -29,14 +29,15 @@ public class ArgsName {
 
     public boolean checkFormat(String line) {
         if (line.startsWith("=") || line.endsWith("=") || !countSymbol(line)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                "String is in uncorrect format. The string must be of the form \"key = value\".");
         }
         return true;
     }
 
     public boolean checkIsEmptyArray(String[] array) {
         if (array.length == 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Array doesn't contain values.");
         }
         return true;
     }
