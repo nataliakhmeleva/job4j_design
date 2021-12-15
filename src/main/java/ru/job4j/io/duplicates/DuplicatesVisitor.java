@@ -22,8 +22,9 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
             file.toAbsolutePath().toFile().getName());
         if (duplicates.containsKey(fileProperty)) {
             duplicates.get(fileProperty).add(file.toAbsolutePath());
+        } else {
+            duplicates.put(fileProperty, new ArrayList<>(List.of(file.toAbsolutePath())));
         }
-        duplicates.put(fileProperty, new ArrayList<>(List.of(file.toAbsolutePath())));
         return super.visitFile(file, attrs);
     }
 
