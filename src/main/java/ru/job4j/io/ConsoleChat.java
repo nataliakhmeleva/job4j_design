@@ -33,11 +33,11 @@ public class ConsoleChat {
         try (BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in))) {
             String phrase = buffer.readLine();
             logs.add(phrase);
-            while (!phrase.equals(OUT)) {
-                if (phrase.equals(STOP)) {
+            while (!OUT.equals(phrase)) {
+                if (STOP.equals(phrase)) {
                     stopBot = true;
                 }
-                if (phrase.equals(CONTINUE)) {
+                if (CONTINUE.equals(phrase)) {
                     stopBot = false;
                 }
                 if (!stopBot) {
