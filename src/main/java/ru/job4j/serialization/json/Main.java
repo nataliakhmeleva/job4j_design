@@ -1,26 +1,33 @@
 package ru.job4j.serialization.json;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class Main {
 
     public static void main(String[] args) {
+        JSONObject jsonPassport = new JSONObject(
+            "{\"name\": \"Alexandr Pushkin\",\"age\": 30,\"numberPassport\": 80906702}");
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("VTBBank");
+        list.add("Saint Petersburg");
+        JSONArray jsonRequisites = new JSONArray(list);
+
         final Account account = new Account(true, 123456789,
             new Passport("Ivan Ivanov", 35, 40501639),
             new String[]{"SberBank", "Moscow"});
 
-        final Gson gson = new GsonBuilder().create();
-        System.out.println(gson.toJson(account));
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("deposit", account.isDeposit());
+        jsonObject.put("numberOfAccount", account.getNumberOfAccount());
+        jsonObject.put("passport", jsonPassport);
+        jsonObject.put("requisites", jsonRequisites);
 
-        final String accountJson = "{" + "\"account\": true," + "\"numberOfAccount\": 987654321,"
-            + "\"passport\":" + "{" + "\"name\": \"Alexandr Pushkin\"," + "\"age\": 30,"
-            + "\"numberPassport\": 80906702" + "}," + "\"requisites\":"
-            + "[\"VTBBank\",\"Saint Petersburg\"]"
-            + "}";
+        System.out.println(jsonObject.toString());
 
-        final Account accountMod = gson.fromJson(accountJson, Account.class);
-        System.out.println(accountMod);
+        System.out.println(new JSONObject(account).toString());
     }
 
 

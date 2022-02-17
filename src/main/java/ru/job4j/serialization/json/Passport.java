@@ -17,4 +17,16 @@ public class Passport {
         return "Passport{" + "name='" + name + '\'' + ", age=" + age + ", numberPassport="
             + numberPassport + '}';
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getNumberPassport() {
+        return numberPassport;
+    }
 }

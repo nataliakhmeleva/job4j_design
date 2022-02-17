@@ -22,4 +22,20 @@ public class Account {
         return "Account{" + "deposit=" + deposit + ", numberOfAccount=" + numberOfAccount
             + ", passport=" + passport + ", requisites=" + Arrays.toString(requisites) + '}';
     }
+
+    public boolean isDeposit() {
+        return deposit;
+    }
+
+    public int getNumberOfAccount() {
+        return numberOfAccount;
+    }
+
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public String[] getRequisites() {
+        return requisites;
+    }
 }
