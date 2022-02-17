@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -38,7 +39,12 @@ public class CSVReader {
                     stringBuilder.append(String.join(argsName.get("delimiter"), tmp))
                         .append(System.lineSeparator());
                 }
-                saveToFile(stringBuilder, argsName.get("out"));
+
+                if (!"stdout".equals(argsName.get("out"))) {
+                    saveToFile(stringBuilder, argsName.get("out"));
+                } else {
+                    System.out.println(stringBuilder);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -61,13 +67,45 @@ public class CSVReader {
     }
 
     private static void saveToFile(StringBuilder log, String path) {
-        if (!"stdout".equals(path)) {
-            try (PrintWriter out = new PrintWriter(
-                new FileWriter(path, Charset.forName("WINDOWS-1251"), true))) {
-                out.write(String.valueOf(log));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+        try (PrintWriter out = new PrintWriter(
+            new FileWriter(path, Charset.forName("WINDOWS-1251"), true))) {
+            out.write(String.valueOf(log));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void main(String[] args) {
+        String data = String.join(
+            System.lineSeparator(),
+            "name;age;last_name;education",
+            "Tom;20;Smith;Bachelor",
+            "Jack;25;Johnson;Undergraduate",
+            "William;30;Brown;Secondary special"
+        );
+        File file = new File("source.csv");
+        File target = new File("target.csv");
+        ArgsName argsName = ArgsName.of(new String[]{
+            "-path=" + file.getAbsolutePath(), "-delimiter=;", "-out=stdout", "-filter=name,age"
+        });
+        ArgsName argsName2 = ArgsName.of(new String[]{
+            "-path=" + file.getAbsolutePath(), "-delimiter=;", "-out=" + target.getAbsolutePath(),
+            "-filter=name,age"
+        });
+        try {
+            Files.writeString(file.toPath(), data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        handle(argsName);
+        handle(argsName2);
+        try {
+            Files.readString(target.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
