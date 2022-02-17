@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -78,35 +77,8 @@ public class CSVReader {
     }
 
     public static void main(String[] args) {
-        String data = String.join(
-            System.lineSeparator(),
-            "name;age;last_name;education",
-            "Tom;20;Smith;Bachelor",
-            "Jack;25;Johnson;Undergraduate",
-            "William;30;Brown;Secondary special"
-        );
-        File file = new File("source.csv");
-        File target = new File("target.csv");
-        ArgsName argsName = ArgsName.of(new String[]{
-            "-path=" + file.getAbsolutePath(), "-delimiter=;", "-out=stdout", "-filter=name,age"
-        });
-        ArgsName argsName2 = ArgsName.of(new String[]{
-            "-path=" + file.getAbsolutePath(), "-delimiter=;", "-out=" + target.getAbsolutePath(),
-            "-filter=name,age"
-        });
-        try {
-            Files.writeString(file.toPath(), data);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+       ArgsName argsName = ArgsName.of(args);
         handle(argsName);
-        handle(argsName2);
-        try {
-            Files.readString(target.toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 }
