@@ -1,0 +1,8 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<account deposit="true" numberOfAccount="123456789" >
+    <passport name="Ivan Ivanov" age="35" numberPassport="40501639"/>
+    <requisites>
+        <requisite>SberBank</requisite>
+        <requisite>Moscow</requisite>
+    </requisites>
+</account>
