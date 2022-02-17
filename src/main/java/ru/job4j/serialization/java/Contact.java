@@ -1,6 +1,12 @@
 package ru.job4j.serialization.java;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.util.Objects;
 
@@ -13,14 +19,6 @@ public class Contact implements Serializable {
     public Contact(int zipCode, String phone) {
         this.zipCode = zipCode;
         this.phone = phone;
-    }
-
-    public int getZipCode() {
-        return zipCode;
-    }
-
-    public String getPhone() {
-        return phone;
     }
 
     @Override
@@ -43,8 +41,24 @@ public class Contact implements Serializable {
                 new ObjectInputStream(fis)) {
             final Contact contactFromFile = (Contact) ois.readObject();
             System.out.println(contactFromFile);
-            System.out.println(Objects.equals(contact.getZipCode(), contactFromFile.getZipCode()));
-            System.out.println(Objects.equals(contact.getPhone(), contactFromFile.getPhone()));
+            System.out.println(contact.equals(contactFromFile));
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Contact contact = (Contact) o;
+        return zipCode == contact.zipCode && Objects.equals(phone, contact.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(zipCode, phone);
     }
 }
