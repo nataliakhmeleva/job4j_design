@@ -7,7 +7,8 @@ where name like '%Мороженое%';
 select * from product
 where expired_date < (select current_date);
 
-select * from product order by price desc limit 1;
+select  * from product 
+where price = (select max(price) from product);
 
 select t.name, count(p.name)
 from product p
@@ -15,9 +16,9 @@ join type as t
 on p.type_id = t.id
 group by t.name;
 
-select  p.* from product as p
+select  * from product 
 join type as t
-on p.type_id = t.id
+on product.type_id = t.id
 where t.name = 'СЫР' or t.name = 'МОЛОКО';
 
 select t.name, count(p.name)
@@ -27,6 +28,6 @@ on p.type_id = t.id
 group by t.name
 having count(p.name) < 10;
 
-select t.name, p.* from product as p
+select t.name, product.* from product as product
 join type as t
-on p.type_id = t.id;
+on product.type_id = t.id;
