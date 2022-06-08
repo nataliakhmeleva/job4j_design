@@ -101,15 +101,17 @@ public class TableEditor implements AutoCloseable {
 
     public static void main(String[] args) throws Exception {
         Properties properties = new Properties();
-        InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("app.properties");
-        properties.load(in);
-        TableEditor editor = new TableEditor(properties);
-        editor.createTable("table1");
-        editor.addColumn("table1", "name", "text");
-        editor.addColumn("table1", "anotherName", "text");
-        editor.renameColumn("table1", "anotherName", "surname");
-        editor.dropColumn("table1", "name");
-        editor.dropTable("table1");
-        editor.close();
+        try (InputStream in = TableEditor.class.getClassLoader()
+            .getResourceAsStream("app.properties")) {
+            properties.load(in);
+        }
+        try (TableEditor editor = new TableEditor(properties)) {
+            editor.createTable("table1");
+            editor.addColumn("table1", "name", "text");
+            editor.addColumn("table1", "anotherName", "text");
+            editor.renameColumn("table1", "anotherName", "surname");
+            editor.dropColumn("table1", "name");
+            editor.dropTable("table1");
+        }
     }
 }
