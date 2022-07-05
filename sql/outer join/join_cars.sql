@@ -32,11 +32,11 @@ values ('тойота', 1, 1, 2), ('форд', 5, 1, 1),('пежо', 3, 4, 1), (
 select c.name as Автомобиль, cb.name as Кузов, 
 e.name as Двигатель, t.name as Коробка_передач
 from cars c
-join carbody cb
+left join carbody cb
 on c.carbody_id = cb.id
-join engine e
+left join engine e
 on c.engine_id = e.id
-join transmission t
+left join transmission t
 on c.transmission_id = t.id;
 
 select * from carbody cb
