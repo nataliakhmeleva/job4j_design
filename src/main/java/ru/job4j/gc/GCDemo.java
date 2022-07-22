@@ -16,12 +16,16 @@ public class GCDemo {
         System.out.printf("Max: %d%n", maxMemory / MB);
     }
 
+    /*
+    Ключ -Xmx4m -Xms2m
+    При i < 4000 виртуальная машины вызывает сборщик мусора самостоятельно
+    При i < 19000 срабатывает Exception: java.lang.OutOfMemoryError
+     */
     public static void main(String[] args) {
         info();
-        for (int i = 0; i < 10000; i++) {
-            new Person(i, "N" + i);
+        for (int i = 0; i < 19000; i++) {
+            new User(22, "Sergey" + i);
         }
-        System.gc();
         info();
     }
 
