@@ -1,0 +1,26 @@
+[0.007s][info][gc] Using Serial
+[18.910s][info][gc] GC(0) Pause Young (Allocation Failure) 4M->2M(15M) 3.978ms
+[18.972s][info][gc] GC(1) Pause Young (Allocation Failure) 6M->2M(15M) 2.840ms
+[19.015s][info][gc] GC(2) Pause Young (Allocation Failure) 7M->3M(15M) 1.370ms
+[19.254s][info][gc] GC(3) Pause Young (Allocation Failure) 7M->3M(15M) 1.363ms
+[20.474s][info][gc] GC(4) Pause Young (Allocation Failure) 7M->4M(15M) 3.343ms
+[34.753s][info][gc] GC(5) Pause Young (Allocation Failure) 8M->4M(15M) 1.932ms
+[34.760s][info][gc] GC(6) Pause Young (Allocation Failure) 8M->4M(15M) 0.416ms
+[34.765s][info][gc] GC(7) Pause Young (Allocation Failure) 8M->4M(15M) 0.398ms
+[34.771s][info][gc] GC(8) Pause Young (Allocation Failure) 8M->4M(15M) 0.411ms
+[34.777s][info][gc] GC(9) Pause Young (Allocation Failure) 8M->4M(15M) 0.352ms
+[34.782s][info][gc] GC(10) Pause Young (Allocation Failure) 8M->4M(15M) 0.406ms
+[34.784s][info][gc] GC(11) Pause Young (Allocation Failure) 8M->4M(15M) 0.283ms
+[34.786s][info][gc] GC(12) Pause Young (Allocation Failure) 8M->4M(15M) 0.354ms
+[44.493s][info][gc] GC(13) Pause Young (Allocation Failure) 8M->4M(15M) 0.736ms
+[80.512s][info][gc] GC(14) Pause Young (Allocation Failure) 8M->4M(15M) 1.028ms
+[93.091s][info][gc] GC(15) Pause Young (Allocation Failure) 8M->4M(15M) 0.744ms
+[93.094s][info][gc] GC(16) Pause Young (Allocation Failure) 8M->4M(15M) 0.648ms
+[93.097s][info][gc] GC(17) Pause Young (Allocation Failure) 8M->4M(15M) 0.636ms
+[93.099s][info][gc] GC(18) Pause Young (Allocation Failure) 8M->4M(15M) 0.646ms
+[93.102s][info][gc] GC(19) Pause Young (Allocation Failure) 8M->4M(15M) 0.550ms
+[93.104s][info][gc] GC(20) Pause Young (Allocation Failure) 8M->4M(15M) 0.530ms
+[93.106s][info][gc] GC(21) Pause Young (Allocation Failure) 8M->4M(15M) 0.253ms
+[93.108s][info][gc] GC(22) Pause Young (Allocation Failure) 8M->4M(15M) 0.242ms
+[108.537s][info][gc] GC(23) Pause Young (Allocation Failure) 8M->4M(15M) 0.545ms
+[146.564s][info][gc] GC(24) Pause Young (Allocation Failure) 8M->4M(15M) 0.566ms
