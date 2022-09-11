@@ -10,9 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class WeakDemo {
 
     public static void main(String[] args) throws InterruptedException {
-        example1();
-        example2();
-        example3();
+        example4();
     }
 
     private static void example1() throws InterruptedException {
@@ -59,5 +57,20 @@ public class WeakDemo {
         TimeUnit.SECONDS.sleep(3);
         System.out.println("from link " + weak.get());
         System.out.println("from queue " + queue.poll());
+    }
+
+    private static void example4() throws InterruptedException {
+        Object object = new Object() {
+            @Override
+            protected void finalize() throws Throwable {
+                System.out.println("Removed");
+            }
+        };
+        WeakReference<Object> weak = new WeakReference<>(object);
+        Object strong = weak.get();
+        object = null;
+        System.gc();
+        TimeUnit.SECONDS.sleep(3);
+        System.out.println(strong);
     }
 }
