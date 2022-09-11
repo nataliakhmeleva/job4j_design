@@ -15,7 +15,13 @@ public class Menu {
     public static final String ID_FOR_DELETE = "Удаление постов";
 
 
-    public static final String MENU = "    Введите 1 для создание поста.\n" + "    Введите 2, чтобы создать определенное количество постов.\n" + "    Введите 3, чтобы показать все посты.\n" + "    Введите 4, чтобы удалить все посты.\n" + "    Введите любое другое число для выхода.\n";
+    public static final String MENU = """
+                Введите 1 для создание поста.
+                Введите 2, чтобы создать определенное количество постов.
+                Введите 3, чтобы показать все посты.
+                Введите 4, чтобы удалить все посты.
+                Введите любое другое число для выхода.
+            """;
 
     public static void main(String[] args) {
         Random random = new Random();
@@ -27,7 +33,7 @@ public class Menu {
     }
 
     private void start(CommentGenerator commentGenerator, Scanner scanner,
-                              UserGenerator userGenerator, PostStore postStore) {
+                       UserGenerator userGenerator, PostStore postStore) {
         boolean run = true;
         while (run) {
             System.out.println(MENU);
@@ -61,7 +67,7 @@ public class Menu {
     }
 
     private void createPost(CommentGenerator commentGenerator,
-                                   UserGenerator userGenerator, PostStore postStore, String text) {
+                            UserGenerator userGenerator, PostStore postStore, String text) {
         userGenerator.generate();
         commentGenerator.generate();
         postStore.add(new Post(text, commentGenerator.getComments()));
