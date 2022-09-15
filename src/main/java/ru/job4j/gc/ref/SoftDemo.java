@@ -41,6 +41,7 @@ public class SoftDemo {
         System.out.println(liveObject);
     }
 
+    @SuppressWarnings("checkstyle:WhitespaceAround")
     private static void example3() {
         Object object = new Object() {
             @Override
@@ -50,8 +51,11 @@ public class SoftDemo {
         };
         SoftReference<Object> soft = new SoftReference<>(object);
         Object strong = soft.get();
-        object = null;
+        if (object != null) {
+            System.out.println(strong);
+        } else {
+            System.out.println("GC worked.");
+        }
         System.gc();
-        System.out.println(strong);
     }
 }

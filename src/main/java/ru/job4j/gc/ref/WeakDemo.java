@@ -68,9 +68,12 @@ public class WeakDemo {
         };
         WeakReference<Object> weak = new WeakReference<>(object);
         Object strong = weak.get();
-        object = null;
         System.gc();
         TimeUnit.SECONDS.sleep(3);
-        System.out.println(strong);
+        if (object != null) {
+            System.out.println(strong);
+        } else {
+            System.out.println("GC worked.");
+        }
     }
 }
