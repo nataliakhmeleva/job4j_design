@@ -3,9 +3,11 @@ package ru.job4j.gc.cache.menu;
 import ru.job4j.gc.cache.DirFileCache;
 
 
+import java.io.File;
 import java.util.Scanner;
 
 public class Emulator {
+    static DirFileCache dir;
     public static final int LOAD_FILE_INTO_CACHE = 1;
     public static final int GET_FILE_FROM_CACHE = 2;
 
@@ -27,8 +29,10 @@ public class Emulator {
     public static void main(String[] args) {
         System.out.println(SHOW);
         Scanner scanner = new Scanner(System.in);
-
-        DirFileCache dir = new DirFileCache(scanner.nextLine());
+        String directory = scanner.nextLine();
+        if (validate(directory)) {
+            dir = new DirFileCache(directory);
+        }
 
         boolean run = true;
         while (run) {
@@ -42,11 +46,20 @@ public class Emulator {
                 System.out.println(SUCCESS);
             } else if (GET_FILE_FROM_CACHE == userChoice) {
                 System.out.println(GET);
-                System.out.println(dir.get(scanner.nextLine()));
+                String text = scanner.nextLine();
+                System.out.println(dir.get(text));
             } else {
                 run = false;
                 System.out.println(EXIT);
             }
         }
+    }
+
+    public static boolean validate(String path) {
+        File file = new File(path);
+        if (!file.isDirectory()) {
+            throw new IllegalArgumentException("Directory not found");
+        }
+        return true;
     }
 }
