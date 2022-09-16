@@ -7,7 +7,6 @@ import java.io.File;
 import java.util.Scanner;
 
 public class Emulator {
-    static DirFileCache dir;
     public static final int LOAD_FILE_INTO_CACHE = 1;
     public static final int GET_FILE_FROM_CACHE = 2;
 
@@ -27,6 +26,7 @@ public class Emulator {
 
 
     public static void main(String[] args) {
+        DirFileCache dir = null;
         System.out.println(SHOW);
         Scanner scanner = new Scanner(System.in);
         String directory = scanner.nextLine();
