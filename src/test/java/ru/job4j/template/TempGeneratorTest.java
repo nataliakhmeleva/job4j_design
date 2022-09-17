@@ -1,6 +1,9 @@
 package ru.job4j.template;
 
+<<<<<<< HEAD
 import org.junit.jupiter.api.Disabled;
+=======
+>>>>>>> origin/master
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -9,7 +12,10 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+<<<<<<< HEAD
 @Disabled
+=======
+>>>>>>> origin/master
 class TempGeneratorTest {
     Generator generator = new TempGenerator();
     Map<String, String> maps = new HashMap<>();
