@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.*;
+import static ru.job4j.design.srp.AccountingReport.EXCHANGE;
 import static ru.job4j.design.srp.ReportEngine.DATE_FORMAT;
 
 public class ReportEngineTest {
@@ -40,7 +41,7 @@ public class ReportEngineTest {
                 .append(worker.getName()).append(";")
                 .append(DATE_FORMAT.format(worker.getHired().getTime())).append(";")
                 .append(DATE_FORMAT.format(worker.getFired().getTime())).append(";")
-                .append(worker.getSalary() * 60).append(";")
+                .append(worker.getSalary() * EXCHANGE).append(";")
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
     }

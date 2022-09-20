@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 public class AccountingReport implements Report {
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd:MM:yyyy HH:mm");
-
+    public static final int EXCHANGE = 60;
     private Store store;
 
     public AccountingReport(Store store) {
@@ -27,8 +27,7 @@ public class AccountingReport implements Report {
         return text.toString();
     }
 
-    public double calculate(Employee employee) {
-        int exchange = 60;
-        return employee.getSalary() * exchange;
+    private double calculate(Employee employee) {
+        return employee.getSalary() * EXCHANGE;
     }
 }
