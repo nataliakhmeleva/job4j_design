@@ -14,13 +14,20 @@ public class Cat {
     private int age;
     private String breed;
 
+    /**
+     * Нарушает принцип OCP, т.к. поле класса не является абстакцией, а имеет конкретную реализацию.
+     */
     private final List<Cat> list = new ArrayList<>();
 
     public String getName() {
         return name;
     }
 
-    public List<Cat> getCats() {
+    /**
+     * Нарушает принцип OCP, т.к. параметры и возвращаемые значения не являются абстрактными.
+     */
+    public List<Cat> addCats(Cat cat) {
+        list.add(cat);
         return list;
     }
 
