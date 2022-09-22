@@ -1,6 +1,5 @@
 package ru.job4j.design.srp;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.text.DateFormat;
@@ -123,7 +122,6 @@ public class ReportEngineTest {
         assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
     }
 
-    @Disabled
     @Test
     public void whenXMLReportGenerated() {
         MemStore store = new MemStore();
@@ -133,20 +131,15 @@ public class ReportEngineTest {
         store.add(worker);
         Report engine = new XMLReport(store);
         StringBuilder expect = new StringBuilder()
-                .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>")
-                .append(System.lineSeparator())
-                .append("<employees>").append(System.lineSeparator())
-                .append("    <employees>").append(System.lineSeparator())
-                .append("        <fired>").append(dateFormat.format(worker.getFired().getTime())).append("</fired>")
-                .append(System.lineSeparator())
-                .append("        <hired>").append(dateFormat.format(worker.getHired().getTime())).append("</hired>")
-                .append(System.lineSeparator())
-                .append("        <name>").append(worker.getName()).append("</name>")
-                .append(System.lineSeparator())
-                .append("        <salary>").append(worker.getSalary()).append("</salary>")
-                .append(System.lineSeparator())
-                .append("    </employees>").append(System.lineSeparator()).append("</employees>")
-                .append(System.lineSeparator());
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n")
+                .append("<employees>\n")
+                .append("    <employees>\n")
+                .append("        <fired>").append(dateFormat.format(worker.getFired().getTime())).append("</fired>\n")
+                .append("        <hired>").append(dateFormat.format(worker.getHired().getTime())).append("</hired>\n")
+                .append("        <name>").append(worker.getName()).append("</name>\n")
+                .append("        <salary>").append(worker.getSalary()).append("</salary>\n")
+                .append("    </employees>\n")
+                .append("</employees>\n");
         assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
     }
 }
