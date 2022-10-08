@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Warehouse implements Store {
-    private static final double LIMIT = 25;
     private List<Food> wareHouse = new ArrayList<>();
 
     @Override
     public boolean add(Food food) {
         boolean rsl = false;
-        if (LIMIT > getPercentExpiry(food)) {
+        if (Constaints.DOWN_LIMIT > getPercentExpiry(food)) {
             wareHouse.add(food);
             rsl = true;
         }
@@ -19,6 +18,6 @@ public class Warehouse implements Store {
 
     @Override
     public List<Food> getAllFood() {
-        return wareHouse;
+        return List.copyOf(wareHouse);
     }
 }

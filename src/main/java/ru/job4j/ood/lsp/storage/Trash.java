@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Trash implements Store {
-    private static final double LIMIT = 100;
-    private List<Food> trash = new ArrayList<>();
+        private List<Food> trash = new ArrayList<>();
 
     @Override
     public boolean add(Food food) {
         boolean rsl = false;
-        if (LIMIT <= getPercentExpiry(food)) {
+        if (Constaints.TOP_LIMIT <= getPercentExpiry(food)) {
             trash.add(food);
             rsl = true;
         }
@@ -19,6 +18,6 @@ public class Trash implements Store {
 
     @Override
     public List<Food> getAllFood() {
-        return trash;
+        return List.copyOf(trash);
     }
 }
