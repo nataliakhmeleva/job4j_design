@@ -28,7 +28,7 @@ class ControlQualityTest {
         LocalDateTime created = LocalDateTime.now().minusDays(8);
         Food meat = new Meat("meat", expired, created, 450.50, 25);
         controlQuality.execute(meat);
-        assertThat(shop.getAllFood().contains(meat));
+        assertThat(shop.getAllFood()).contains(meat);
     }
 
     @Test
@@ -37,7 +37,7 @@ class ControlQualityTest {
         LocalDateTime created = LocalDateTime.now().minusDays(10);
         Food meat = new Meat("meat", expired, created, 450.00, 25);
         controlQuality.execute(meat);
-        assertThat(shop.getAllFood().contains(meat));
+        assertThat(shop.getAllFood()).contains(meat);
         assertThat(shop.getAllFood().get(0).getPrice()).isEqualTo(337.50);
     }
 
@@ -47,7 +47,7 @@ class ControlQualityTest {
         LocalDateTime created = LocalDateTime.now().minusDays(10);
         Food tomato = new Tomato("tomato", expired, created, 80.00, 36);
         controlQuality.execute(tomato);
-        assertThat(trash.getAllFood().contains(tomato));
+        assertThat(trash.getAllFood()).contains(tomato);
     }
 
     @Test
