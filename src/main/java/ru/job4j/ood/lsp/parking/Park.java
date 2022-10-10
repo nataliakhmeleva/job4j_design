@@ -9,6 +9,7 @@ public class Park {
         this.parkingList = parkingList;
     }
 
-    public void execute(Car car) {
+    public boolean execute(Car car) {
+        return false;
     }
 }

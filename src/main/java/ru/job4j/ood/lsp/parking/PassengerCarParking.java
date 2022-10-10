@@ -5,10 +5,11 @@ import java.util.List;
 
 public class PassengerCarParking implements Parking {
     private int places;
-    private List<Car> passengerCars = new ArrayList<>();
+    private List<Car> cars;
 
     public PassengerCarParking(int places) {
         this.places = places;
+        cars = new ArrayList<>(places);
     }
 
     @Override
