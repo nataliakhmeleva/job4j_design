@@ -10,6 +10,13 @@ public class Park {
     }
 
     public boolean execute(Car car) {
-        return false;
+        boolean rsl = false;
+        for (Parking parking : parkingList) {
+            if (parking.add(car)) {
+                rsl = true;
+                break;
+            }
+        }
+        return rsl;
     }
 }

@@ -1,6 +1,8 @@
 package ru.job4j.ood.lsp.parking;
 
-public class Truck extends Car {
+import static ru.job4j.ood.lsp.parking.PassengerCar.SIZE_OF_PASSENGER_CAR;
+
+public class Truck implements Car {
     private int size;
 
     public Truck(int size) {
@@ -9,7 +11,7 @@ public class Truck extends Car {
     }
 
     public void validate(int size) {
-        if (size <= 1) {
+        if (size <= SIZE_OF_PASSENGER_CAR) {
             throw new IllegalArgumentException("The size must be more than 1");
         }
     }

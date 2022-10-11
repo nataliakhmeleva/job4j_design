@@ -7,7 +7,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled
 class ParkTest {
     Car car1 = new PassengerCar();
     Car car2 = new PassengerCar();
@@ -24,11 +23,12 @@ class ParkTest {
         assertThat(park.execute(car4)).isTrue();
     }
 
+    @Disabled
     @Test
     public void whenEnoughPlacesFor2Truck() {
         Park park = new Park(List.of(new PassengerCarParking(2), new TruckParking(1)));
         assertThat(park.execute(car3)).isTrue();
-        assertThat(park.execute(car4)).isTrue();
+        assertThat(park.execute(car4)).isFalse();
     }
 
     @Test
