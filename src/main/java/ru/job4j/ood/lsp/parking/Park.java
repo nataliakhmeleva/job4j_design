@@ -3,19 +3,28 @@ package ru.job4j.ood.lsp.parking;
 import java.util.List;
 
 public class Park {
-    private List<Parking> parkingList;
+    private List<PassengerCarParking> passengerCarParkingList;
+    private List<TruckParking> truckParkingList;
 
-    public Park(List<Parking> parkingList) {
-        this.parkingList = parkingList;
+    public Park(List<PassengerCarParking> passengerCarParkingList, List<TruckParking> truckParkingList) {
+        this.passengerCarParkingList = passengerCarParkingList;
+        this.truckParkingList = truckParkingList;
+    }
+
+    public boolean toParkTruck(Car car) {
+        return truckParkingList.stream().anyMatch(parking -> parking.add(car));
+    }
+
+    public boolean toParkPassengerCar(Car car) {
+        return passengerCarParkingList.stream().anyMatch(parking -> parking.add(car));
     }
 
     public boolean execute(Car car) {
         boolean rsl = false;
-        for (Parking parking : parkingList) {
-            if (parking.add(car)) {
-                rsl = true;
-                break;
-            }
+        if (toParkTruck(car)) {
+            rsl = true;
+        } else if (toParkPassengerCar(car)) {
+            rsl = true;
         }
         return rsl;
     }

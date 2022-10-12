@@ -1,6 +1,5 @@
 package ru.job4j.ood.lsp.parking;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -16,38 +15,38 @@ class ParkTest {
 
     @Test
     public void whenEnoughPlacesFor2PassengerCarAnd2Truck() {
-        Park park = new Park(List.of(new PassengerCarParking(2), new TruckParking(2)));
+        Park park = new Park(List.of(new PassengerCarParking(2)), List.of(new TruckParking(2)));
         assertThat(park.execute(car1)).isTrue();
         assertThat(park.execute(car2)).isTrue();
         assertThat(park.execute(car3)).isTrue();
         assertThat(park.execute(car4)).isTrue();
     }
 
-    @Disabled
+
     @Test
     public void whenEnoughPlacesFor2Truck() {
-        Park park = new Park(List.of(new PassengerCarParking(2), new TruckParking(1)));
+        Park park = new Park(List.of(new PassengerCarParking(2)), List.of(new TruckParking(1)));
         assertThat(park.execute(car3)).isTrue();
         assertThat(park.execute(car4)).isFalse();
     }
 
     @Test
     public void whenEnoughPlacesOnlyPassengerCarParking() {
-        Park park = new Park(List.of(new PassengerCarParking(3), new TruckParking(0)));
+        Park park = new Park(List.of(new PassengerCarParking(3)), List.of(new TruckParking(0)));
         assertThat(park.execute(car1)).isTrue();
         assertThat(park.execute(car3)).isTrue();
     }
 
     @Test
     public void whenNoPlacesForPassengerCar() {
-        Park park = new Park(List.of(new PassengerCarParking(0), new TruckParking(1)));
+        Park park = new Park(List.of(new PassengerCarParking(0)), List.of(new TruckParking(1)));
         assertThat(park.execute(car1)).isFalse();
         assertThat(park.execute(car3)).isTrue();
     }
 
     @Test
     public void whenNoEnoughPlacesForAllCars() {
-        Park park = new Park(List.of(new PassengerCarParking(2), new TruckParking(1)));
+        Park park = new Park(List.of(new PassengerCarParking(2)), List.of(new TruckParking(1)));
         assertThat(park.execute(car1)).isTrue();
         assertThat(park.execute(car2)).isTrue();
         assertThat(park.execute(car3)).isTrue();
