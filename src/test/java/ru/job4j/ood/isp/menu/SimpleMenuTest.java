@@ -42,6 +42,7 @@ public class SimpleMenuTest {
         menu.add("Купить продукты", "Купить хлеб", STUB_ACTION);
         menu.add("Купить продукты", "Купить молоко", STUB_ACTION);
         ByteArrayOutputStream output = new ByteArrayOutputStream();
+        PrintStream printStream = System.out;
         System.setOut(new PrintStream(output));
         MenuPrinter printer = new ConsoleMenuPrinter();
         printer.print(menu);
@@ -53,6 +54,6 @@ public class SimpleMenuTest {
                 2.Покормить собаку\r
                 """;
         assertThat(output.toString()).isEqualTo(expected);
-
+        System.setOut(printStream);
     }
 }
