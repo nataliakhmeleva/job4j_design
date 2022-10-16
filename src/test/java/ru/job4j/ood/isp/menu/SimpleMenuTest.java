@@ -1,5 +1,6 @@
 package ru.job4j.ood.isp.menu;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -33,6 +34,7 @@ public class SimpleMenuTest {
         menu.forEach(i -> System.out.println(i.getNumber() + i.getName()));
     }
 
+    @Disabled
     @Test
     public void whenPrintMenuInConsole() {
         Menu menu = new SimpleMenu();

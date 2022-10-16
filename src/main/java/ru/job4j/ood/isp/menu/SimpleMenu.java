@@ -120,7 +120,6 @@ public class SimpleMenu implements Menu {
     }
 
     private class ItemInfo {
-
         MenuItem menuItem;
         String number;
 
