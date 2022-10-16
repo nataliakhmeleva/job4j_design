@@ -1,6 +1,5 @@
 package ru.job4j.ood.isp.menu;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -12,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SimpleMenuTest {
 
     public static final ActionDelegate STUB_ACTION = System.out::println;
+    public static final String SEPARATOR = System.lineSeparator();
 
     @Test
     public void whenAddThenReturnSame() {
@@ -34,8 +34,7 @@ public class SimpleMenuTest {
         menu.forEach(i -> System.out.println(i.getNumber() + i.getName()));
     }
 
-    @Disabled
-    @Test
+       @Test
     public void whenPrintMenuInConsole() {
         Menu menu = new SimpleMenu();
         menu.add(Menu.ROOT, "Сходить в магазин", STUB_ACTION);
@@ -48,13 +47,9 @@ public class SimpleMenuTest {
         System.setOut(new PrintStream(output));
         MenuPrinter printer = new ConsoleMenuPrinter();
         printer.print(menu);
-        String expected = """
-                1.Сходить в магазин\r
-                -1.1.Купить продукты\r
-                --1.1.1.Купить хлеб\r
-                --1.1.2.Купить молоко\r
-                2.Покормить собаку\r
-                """;
+        String expected = "1.Сходить в магазин" + SEPARATOR + "-1.1.Купить продукты"
+                + SEPARATOR + "--1.1.1.Купить хлеб" + SEPARATOR + "--1.1.2.Купить молоко"
+                + SEPARATOR + "2.Покормить собаку" + SEPARATOR;
         assertThat(output.toString()).isEqualTo(expected);
         System.setOut(printStream);
     }
