@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Trash implements Store {
-        private List<Food> trash = new ArrayList<>();
+    private List<Food> trash = new ArrayList<>();
 
     @Override
     public boolean add(Food food) {
@@ -19,5 +19,10 @@ public class Trash implements Store {
     @Override
     public List<Food> getAllFood() {
         return List.copyOf(trash);
+    }
+
+    @Override
+    public void clean() {
+        trash.clear();
     }
 }

@@ -23,4 +23,9 @@ public class Shop implements Store {
     public List<Food> getAllFood() {
         return List.copyOf(shop);
     }
+
+    @Override
+    public void clean() {
+        shop.clear();
+    }
 }

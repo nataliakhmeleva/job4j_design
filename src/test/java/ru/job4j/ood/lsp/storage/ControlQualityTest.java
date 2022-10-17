@@ -68,4 +68,27 @@ class ControlQualityTest {
         assertThat(shop.getAllFood()).containsAll(List.of(pock, beef));
         assertThat(trash.getAllFood()).contains(tomato);
     }
+
+    @Test
+    public void whenAllFoodInStorageToResort() {
+        Food milk = new Milk("moloko", LocalDateTime.now().plusDays(10), LocalDateTime.now().minusDays(2),
+                84.10, 12.5);
+        Food pock = new Meat("pock", LocalDateTime.now().plusDays(10), LocalDateTime.now().minusDays(8),
+                450.00, 25);
+        Food beef = new Meat("beef", LocalDateTime.now().plusDays(1), LocalDateTime.now().minusDays(10),
+                450.00, 25);
+        Food tomato = new Tomato("tomato", LocalDateTime.now().minusDays(1), LocalDateTime.now().minusDays(10),
+                80.00, 36);
+        controlQuality.execute(milk);
+        controlQuality.execute(pock);
+        controlQuality.execute(beef);
+        controlQuality.execute(tomato);
+        assertThat(warehouse.getAllFood()).contains(milk);
+        assertThat(shop.getAllFood()).containsAll(List.of(pock, beef));
+        assertThat(trash.getAllFood()).contains(tomato);
+        controlQuality.resort();
+        assertThat(warehouse.getAllFood()).contains(milk);
+        assertThat(shop.getAllFood()).containsAll(List.of(pock, beef));
+        assertThat(trash.getAllFood()).contains(tomato);
+    }
 }

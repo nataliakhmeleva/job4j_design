@@ -14,4 +14,6 @@ public interface Store {
         double minExpiry = ChronoUnit.MINUTES.between(food.getCreateDate(), LocalDateTime.now());
         return minExpiry / maxExpiry * 100;
     }
+
+    void clean();
 }
