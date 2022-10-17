@@ -34,7 +34,7 @@ public class SimpleMenuTest {
         menu.forEach(i -> System.out.println(i.getNumber() + i.getName()));
     }
 
-       @Test
+    @Test
     public void whenPrintMenuInConsole() {
         Menu menu = new SimpleMenu();
         menu.add(Menu.ROOT, "Сходить в магазин", STUB_ACTION);
@@ -47,10 +47,18 @@ public class SimpleMenuTest {
         System.setOut(new PrintStream(output));
         MenuPrinter printer = new ConsoleMenuPrinter();
         printer.print(menu);
-        String expected = "1.Сходить в магазин" + SEPARATOR + "-1.1.Купить продукты"
-                + SEPARATOR + "--1.1.1.Купить хлеб" + SEPARATOR + "--1.1.2.Купить молоко"
-                + SEPARATOR + "2.Покормить собаку" + SEPARATOR;
-        assertThat(output.toString()).isEqualTo(expected);
+        StringBuilder expected = new StringBuilder()
+                .append("1.Сходить в магазин")
+                .append(SEPARATOR)
+                .append("-1.1.Купить продукты")
+                .append(SEPARATOR)
+                .append("--1.1.1.Купить хлеб")
+                .append(SEPARATOR)
+                .append("--1.1.2.Купить молоко")
+                .append(SEPARATOR)
+                .append("2.Покормить собаку")
+                .append(SEPARATOR);
+        assertThat(output.toString()).isEqualTo(expected.toString());
         System.setOut(printStream);
     }
 }
