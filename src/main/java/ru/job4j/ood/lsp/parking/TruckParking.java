@@ -6,23 +6,25 @@ import java.util.List;
 import static ru.job4j.ood.lsp.parking.PassengerCar.SIZE_OF_PASSENGER_CAR;
 
 public class TruckParking implements Parking {
-    private int places;
-    private List<Car> cars;
+    private int placeCount;
+    private final List<Car> cars;
 
-    public TruckParking(int places) {
-        this.places = places;
-        cars = new ArrayList<>(places);
+    public TruckParking(int placeCount) {
+        this.placeCount = placeCount;
+        cars = new ArrayList<>(placeCount);
     }
 
     @Override
     public boolean add(Car car) {
-        boolean rsl = false;
-        if (places >= SIZE_OF_PASSENGER_CAR && car.getSize() > SIZE_OF_PASSENGER_CAR) {
-            cars.add(car);
-            places--;
-            rsl = true;
+        if (car.getSize() <= SIZE_OF_PASSENGER_CAR) {
+            return false;
         }
-        return rsl;
+        if (placeCount == 0) {
+            return false;
+        }
+        cars.add(car);
+        placeCount--;
+        return true;
     }
 
     @Override

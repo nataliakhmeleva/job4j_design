@@ -6,28 +6,44 @@ import java.util.List;
 import static ru.job4j.ood.lsp.parking.PassengerCar.SIZE_OF_PASSENGER_CAR;
 
 public class PassengerCarParking implements Parking {
-    private int places;
-    private List<Car> cars;
+    private int placeCount;
+    private final List<Car> cars;
 
-    public PassengerCarParking(int places) {
-        this.places = places;
-        cars = new ArrayList<>(places);
+    public PassengerCarParking(int placeCount) {
+        this.placeCount = placeCount;
+        cars = new ArrayList<>(placeCount);
     }
 
     @Override
     public boolean add(Car car) {
-        boolean rsl = false;
-        if (places >= SIZE_OF_PASSENGER_CAR && car.getSize() == SIZE_OF_PASSENGER_CAR) {
-            cars.add(car);
-            places--;
-            rsl = true;
+        if (addPassCar(car)) {
+            return true;
         }
-        if (places >= car.getSize() && car.getSize() > SIZE_OF_PASSENGER_CAR) {
-            cars.add(car);
-            places -= car.getSize();
-            rsl = true;
+        return addTruck(car);
+    }
+
+    private boolean addPassCar(Car car) {
+        if (car.getSize() != SIZE_OF_PASSENGER_CAR) {
+            return false;
         }
-        return rsl;
+        if (placeCount == 0) {
+            return false;
+        }
+        cars.add(car);
+        placeCount--;
+        return true;
+    }
+
+    private boolean addTruck(Car car) {
+        if (car.getSize() <= SIZE_OF_PASSENGER_CAR) {
+            return false;
+        }
+        if (placeCount < car.getSize()) {
+            return false;
+        }
+        cars.add(car);
+        placeCount -= car.getSize();
+        return true;
     }
 
     @Override
